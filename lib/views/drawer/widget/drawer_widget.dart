@@ -1,6 +1,7 @@
 import 'package:design_ui/app_style/app_size.dart';
 import 'package:design_ui/views/drawer/data/drawer_data.dart';
 import 'package:design_ui/views/drawer/model/setting_model.dart';
+import 'package:design_ui/views/shop/home_shop.dart';
 import 'package:flutter/material.dart';
 
 class DrawerWidget extends AppSize {
@@ -72,15 +73,24 @@ class DrawerWidget extends AppSize {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: drawerDataList.length,
-        itemBuilder: (context, index) => Column(
-          children: [
-            cicleAvatarIconWidget(
-                icons: drawerDataList[index].icon, maxRadius: 35),
-            Text(
-              drawerDataList[index].title,
-              style: TextStyle(fontSize: 18),
-            )
-          ],
+        itemBuilder: (context, index) => GestureDetector(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => HomeShop(),
+                ));
+          },
+          child: Column(
+            children: [
+              cicleAvatarIconWidget(
+                  icons: drawerDataList[index].icon, maxRadius: 35),
+              Text(
+                drawerDataList[index].title,
+                style: TextStyle(fontSize: 18),
+              )
+            ],
+          ),
         ),
       ),
     );
