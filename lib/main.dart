@@ -1,4 +1,5 @@
 import 'package:design_ui/views/drawer/drawer_screen.dart';
+import 'package:design_ui/views/shop/view/home_shop.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,8 +11,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: DrawerScreen(),
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: HomeShop(),
     );
   }
 }

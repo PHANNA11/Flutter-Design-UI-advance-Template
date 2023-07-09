@@ -1,7 +1,7 @@
 import 'package:design_ui/app_style/app_size.dart';
 import 'package:design_ui/views/drawer/data/drawer_data.dart';
 import 'package:design_ui/views/drawer/model/setting_model.dart';
-import 'package:design_ui/views/shop/home_shop.dart';
+import 'package:design_ui/views/shop/view/home_shop.dart';
 import 'package:flutter/material.dart';
 
 class DrawerWidget extends AppSize {
@@ -41,20 +41,20 @@ class DrawerWidget extends AppSize {
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        const Text('3345'),
-                        const Text('6542'),
-                        const Text('2222'),
-                        const Text('0988'),
+                      children: const [
+                        Text('3345'),
+                        Text('6542'),
+                        Text('2222'),
+                        Text('0988'),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        const Text('Track'),
-                        const Text('Something'),
-                        const Text('data'),
-                        const Text('file'),
+                      children: const [
+                        Text('Track'),
+                        Text('Something'),
+                        Text('data'),
+                        Text('file'),
                       ],
                     )
                   ],
