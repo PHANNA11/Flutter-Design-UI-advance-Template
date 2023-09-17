@@ -23,81 +23,80 @@ class _HomeShopState extends State<HomeShop> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<CartController>(builder: (contexts) {
-      return Scaffold(
-        drawer: const DrawerScreen(),
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text('Shop'),
-          actions: [
-            Align(
+    return Scaffold(
+      drawer: const DrawerScreen(),
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text('Shop'),
+        actions: [
+          Align(
               alignment: Alignment.centerLeft,
-              child: InkWell(
-                onTap: () {
-                  Get.to(() => ShoppingCartScreen());
-                },
-                child: badges.Badge(
-                  showBadge: cartController.list.isEmpty ? false : true,
-                  badgeContent: Text(cartController.list.length.toString()),
-                  child: const Icon(
-                    Icons.shopping_cart,
-                    size: 30,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(
-              width: 20,
-            )
-          ],
-        ),
-        body: Column(
-          children: [
-            Flexible(
-              flex: 2,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  controller: searchController,
-                  decoration: const InputDecoration(
-                    suffixIcon: Icon(Icons.search),
-                    border: OutlineInputBorder(),
-                    hintText: 'Search',
-                  ),
-                  onChanged: (value) {
-                    setState(() {
-                      if (searchController.text.isEmpty) {
-                        filterProduct.clear();
-                      } else {
-                        filterProduct = products
-                            .where((element) => element.name
-                                .toLowerCase()
-                                .contains(value.toLowerCase()))
-                            .toList();
-                      }
-                    });
+              child: Obx(
+                () => InkWell(
+                  onTap: () {
+                    Get.to(() => ShoppingCartScreen());
                   },
+                  child: badges.Badge(
+                    showBadge: cartController.list.isEmpty ? false : true,
+                    badgeContent: Text(cartController.list.length.toString()),
+                    child: const Icon(
+                      Icons.shopping_cart,
+                      size: 30,
+                    ),
+                  ),
                 ),
+              )),
+          const SizedBox(
+            width: 20,
+          )
+        ],
+      ),
+      body: Column(
+        children: [
+          Flexible(
+            flex: 2,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                controller: searchController,
+                decoration: const InputDecoration(
+                  suffixIcon: Icon(Icons.search),
+                  border: OutlineInputBorder(),
+                  hintText: 'Search',
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    if (searchController.text.isEmpty) {
+                      filterProduct.clear();
+                    } else {
+                      filterProduct = products
+                          .where((element) => element.name
+                              .toLowerCase()
+                              .contains(value.toLowerCase()))
+                          .toList();
+                    }
+                  });
+                },
               ),
             ),
-            Flexible(
-              flex: 12,
-              child: GridView.count(
-                childAspectRatio: 12 / 18,
-                crossAxisCount: 2,
-                children: List.generate(
-                    searchController.text.isEmpty || filterProduct.isEmpty
-                        ? products.length
-                        : filterProduct.length,
-                    (index) => buildProductCard(filterProduct.isEmpty
-                        ? products[index]
-                        : filterProduct[index])),
-              ),
-            )
-          ],
-        ),
-      );
-    });
+          ),
+          Flexible(
+            flex: 12,
+            child: GridView.count(
+              childAspectRatio: 12 / 18,
+              crossAxisCount: 2,
+              children: List.generate(
+                  searchController.text.isEmpty || filterProduct.isEmpty
+                      ? products.length
+                      : filterProduct.length,
+                  (index) => buildProductCard(filterProduct.isEmpty
+                      ? products[index]
+                      : filterProduct[index])),
+            ),
+          )
+        ],
+      ),
+    );
   }
 
   Widget buildProductCard(ProductModel pro) {
@@ -145,23 +144,26 @@ class _HomeShopState extends State<HomeShop> {
                                   '\$${pro.price}',
                                   style: AppSize().priceTextStyle,
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
                         Expanded(
-                          child: InkWell(
-                            onTap: () async {
-                              cartController.addToCart(product: pro);
-                            },
-                            child: const Align(
-                              alignment: Alignment.bottomCenter,
-                              child: Icon(
-                                Icons.shopping_cart,
-                                size: 25,
+                          child:
+                              GetBuilder<CartController>(builder: (contexts) {
+                            return InkWell(
+                              onTap: () async {
+                                contexts.addToCart(product: pro);
+                              },
+                              child: const Align(
+                                alignment: Alignment.bottomCenter,
+                                child: Icon(
+                                  Icons.shopping_cart,
+                                  size: 25,
+                                ),
                               ),
-                            ),
-                          ),
+                            );
+                          }),
                         )
                       ],
                     ),
@@ -176,13 +178,13 @@ class _HomeShopState extends State<HomeShop> {
               child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    pro.faverite = !pro.faverite;
+                    pro.faverite = !pro.faverite!;
                   });
                 },
                 child: CircleAvatar(
                   child: Icon(
                     Icons.favorite,
-                    color: pro.faverite ? Colors.red : Colors.white,
+                    color: pro.faverite! ? Colors.red : Colors.white,
                   ),
                 ),
               ))

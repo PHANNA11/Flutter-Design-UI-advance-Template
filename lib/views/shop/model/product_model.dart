@@ -1,11 +1,11 @@
 class ProductModel {
-  late int code;
-  late String name;
-  late String image;
-  late String description;
-  late bool faverite;
-  late double price;
-  late int qty;
+  final int code;
+  final String name;
+  final String image;
+  final String description;
+  bool? faverite;
+  final double price;
+  int? qty;
   late List<String> ItemAddOn;
   ProductModel(
       {required this.code,

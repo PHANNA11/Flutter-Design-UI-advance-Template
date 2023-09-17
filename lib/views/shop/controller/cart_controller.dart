@@ -5,7 +5,39 @@ import 'package:get/state_manager.dart';
 class CartController extends GetxController {
   RxList<ProductModel> list = <ProductModel>[].obs;
   void addToCart({ProductModel? product}) async {
-    list.add(product!);
+    if (list.isNotEmpty) {
+      if (list.every((element) => element.code != product!.code)) {
+        list.add(product!);
+      } else {
+        list[list.indexWhere((element) => element.code == product!.code)].qty++;
+      }
+    } else {
+      list.add(product!);
+    }
+
+    update();
+  }
+
+  void removeFromCart({required int productId}) async {
+    int index = list.indexWhere((element) => element.code == productId);
+    list.removeAt(index);
+    update();
+  }
+
+  void incrementQty(ProductModel product) async {
+    int index = list.indexWhere((element) => element.code == product.code);
+    list[index].qty++;
+
+    update();
+  }
+
+  void decrementQty(ProductModel product) async {
+    int index = list.indexWhere((element) => element.code == product.code);
+    if (list[index].qty == 1) {
+      list.removeWhere((element) => element.code == product.code);
+    } else {
+      list[index].qty--;
+    }
     update();
   }
 }
