@@ -1,8 +1,10 @@
 import 'package:design_ui/app_style/app_size.dart';
 import 'package:design_ui/views/drawer/data/drawer_data.dart';
 import 'package:design_ui/views/drawer/model/setting_model.dart';
+import 'package:design_ui/views/drawer/setting.dart';
 import 'package:design_ui/views/shop/view/home_shop.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class DrawerWidget extends AppSize {
   Widget cardUser() {
@@ -125,39 +127,44 @@ class DrawerWidget extends AppSize {
   Widget cardItem(SettingModel settingModel) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Container(
-        height: 100,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: mianAppColor,
-          borderRadius: BorderRadius.circular(decorationS15),
-        ),
-        child: Row(
-          children: [
-            Expanded(
-                flex: 1,
-                child: cicleAvatarIconWidget(
-                    maxRadius: 30,
-                    icons: settingModel.icon,
-                    color: settingModel.color)),
-            Expanded(
-              flex: 3,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    settingModel.title,
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  Text(
-                    settingModel.subtitle,
-                    style: TextStyle(fontSize: 18, color: Colors.grey),
-                  )
-                ],
-              ),
-            )
-          ],
+      child: GestureDetector(
+        onTap: () {
+          Get.to(() => const SettingScreen());
+        },
+        child: Container(
+          height: 100,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: mianAppColor,
+            borderRadius: BorderRadius.circular(decorationS15),
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                  flex: 1,
+                  child: cicleAvatarIconWidget(
+                      maxRadius: 30,
+                      icons: settingModel.icon,
+                      color: settingModel.color)),
+              Expanded(
+                flex: 3,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      settingModel.title,
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    Text(
+                      settingModel.subtitle,
+                      style: TextStyle(fontSize: 18, color: Colors.grey),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
