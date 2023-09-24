@@ -9,7 +9,10 @@ class CartController extends GetxController {
       if (list.every((element) => element.code != product!.code)) {
         list.add(product!);
       } else {
-        list[list.indexWhere((element) => element.code == product!.code)].qty++;
+        list[list.indexWhere((element) => element.code == product!.code)].qty =
+            list[list.indexWhere((element) => element.code == product!.code)]
+                    .qty! +
+                1;
       }
     } else {
       list.add(product!);
@@ -26,8 +29,7 @@ class CartController extends GetxController {
 
   void incrementQty(ProductModel product) async {
     int index = list.indexWhere((element) => element.code == product.code);
-    list[index].qty++;
-
+    list[index].qty = list[index].qty! + 1;
     update();
   }
 
@@ -36,7 +38,7 @@ class CartController extends GetxController {
     if (list[index].qty == 1) {
       list.removeWhere((element) => element.code == product.code);
     } else {
-      list[index].qty--;
+      list[index].qty = list[index].qty! - 1;
     }
     update();
   }

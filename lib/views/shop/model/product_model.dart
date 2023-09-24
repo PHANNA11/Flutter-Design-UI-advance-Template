@@ -5,7 +5,7 @@ class ProductModel {
   final String description;
   bool? faverite;
   final double price;
-  int? qty;
+  late int? qty;
   late List<String> ItemAddOn;
   ProductModel(
       {required this.code,
