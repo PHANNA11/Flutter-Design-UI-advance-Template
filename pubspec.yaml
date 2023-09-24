@@ -38,6 +38,7 @@ dependencies:
   badges: ^3.1.1
   get: ^4.6.5
   get_storage: ^2.1.1
+  shared_preferences: ^2.2.1
 
 dev_dependencies:
   flutter_test:
@@ -81,6 +82,33 @@ flutter:
     - family: bokor
       fonts:
         - asset: assets/fonts/Bokor-Regular.ttf
+    #===============================
+    - family: Playball-Regular
+      fonts:
+        - asset: assets/fonts/Playball-Regular.ttf
+    #===============================
+    - family: DancingScript
+      fonts:
+        - asset: assets/fonts/DancingScript-VariableFont_wght.ttf
+    #===============================
+    - family: KaiseiTokumin-Bold
+      fonts:
+        - asset: assets/fonts/KaiseiTokumin-Bold.ttf
+    #===============================
+    - family: KaiseiTokumin-Regular
+      fonts:
+        - asset: assets/fonts/KaiseiTokumin-Regular.ttf
+    #===============================
+    - family: NotoColorEmoji
+      fonts:
+        - asset: assets/fonts/NotoColorEmoji-Regular.ttf
+    - family: Tangerine-Bold
+      fonts:
+        - asset: assets/fonts/Tangerine-Bold.ttf
+    #===============================
+    - family: Tangerine-Regular
+      fonts:
+        - asset: assets/fonts/Tangerine-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

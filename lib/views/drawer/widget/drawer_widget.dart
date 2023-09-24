@@ -129,7 +129,7 @@ class DrawerWidget extends AppSize {
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
         onTap: () {
-          Get.to(() => const SettingScreen());
+          Get.to(() => SettingScreen());
         },
         child: Container(
           height: 100,

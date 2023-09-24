@@ -1,6 +1,8 @@
+import 'package:design_ui/app_style/app_size.dart';
 import 'package:design_ui/views/shop/controller/cart_controller.dart';
 import 'package:design_ui/views/shop/model/product_model.dart';
 import 'package:design_ui/views/shop/view/detail_product_screen.dart';
+import 'package:design_ui/widget/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -19,7 +21,10 @@ class ShoppingCartScreen extends StatelessWidget {
         builder: (contexts) {
           return Scaffold(
             appBar: AppBar(
-              title: const Text('Shopping Cart'),
+              title: textWidget(
+                  title: 'Shopping Cart',
+                  fontWeight: FontWeight.bold,
+                  textSize: 20),
             ),
             body: ListView.builder(
               itemCount: cartController.list.length,
@@ -62,10 +67,7 @@ class ShoppingCartScreen extends StatelessWidget {
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                         Text('\$${product.price.toStringAsFixed(2)}',
-                            style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.red)),
+                            style: AppSize().priceTextStyle),
                         Row(
                           children: [
                             GestureDetector(

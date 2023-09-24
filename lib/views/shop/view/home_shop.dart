@@ -4,6 +4,7 @@ import 'package:design_ui/views/shop/controller/cart_controller.dart';
 import 'package:design_ui/views/shop/model/product_model.dart';
 import 'package:design_ui/views/shop/view/detail_product_screen.dart';
 import 'package:design_ui/views/shop/view/shopping_cart_screen.dart';
+import 'package:design_ui/widget/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -28,7 +29,8 @@ class _HomeShopState extends State<HomeShop> {
       drawer: const DrawerScreen(),
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Shop'),
+        title: textWidget(
+            title: 'shop'.tr, fontWeight: FontWeight.bold, textSize: 30),
         actions: [
           Align(
               alignment: Alignment.centerLeft,
@@ -60,10 +62,10 @@ class _HomeShopState extends State<HomeShop> {
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
                 controller: searchController,
-                decoration: const InputDecoration(
-                  suffixIcon: Icon(Icons.search),
-                  border: OutlineInputBorder(),
-                  hintText: 'Search',
+                decoration: InputDecoration(
+                  suffixIcon: const Icon(Icons.search),
+                  border: const OutlineInputBorder(),
+                  hintText: 'search'.tr,
                 ),
                 onChanged: (value) {
                   setState(() {
@@ -137,13 +139,9 @@ class _HomeShopState extends State<HomeShop> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Flexible(
-                                  child: Text(
-                                    pro.name,
-                                    style: AppSize().titleTextStyle,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
+                                    child: textWidget(
+                                        title: pro.name,
+                                        fontWeight: FontWeight.bold)),
                                 Flexible(
                                   child: Text(
                                     '\$${pro.price}',
